@@ -10,10 +10,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def IndexPage():
-    #cron_status = subprocess.check_output(['service','cron','status']).strip('\n')
-    #f = open('/var/log/datacq/error.log')
-    #error = f.read().strip('\n')
-    #"""index page containes several basic information like system uptime etc"""
     return render_template('data.html')
 
 @app.route('/files', methods=["GET", "POST"])
@@ -42,7 +38,7 @@ def SearchFiles():
     if request.method == 'POST':
         query = request.form['search']
         if query:
-            return render_template('search.html', filelist=search.locate_with_folder('/home/pi/datacq/static/', request.form['search'])) 
+            return render_template('search.html', filelist=search.locate_with_folder('/home/pi/datacq/static/', request.form['search']))
     return render_template('search.html')
 
 @app.route('/reset', methods=['POST', 'GET'])
@@ -58,13 +54,6 @@ def ResetFile():
                 search.delete_file(filename)
                 return render_template('reset.html', file_info=file_info)
     return render_template('reset.html', file_info=file_info)
-
-@app.route('/status')
-def SystemStatus():
-    """summarize system status on this page"""
-    zip_file = "{0:.0f}%".format(len(search.locate_with_folder('./static', '.zip'))/100 * 100)   
-    csv_file = "{0:.0f}%".format(len(search.locate_with_folder('./static', '.csv'))/100 * 100)
-    return render_template('status.html', zip_file=zip_file, csv_file=csv_file)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, threaded=True, debug=True)
