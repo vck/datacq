@@ -22,31 +22,26 @@ except ImportError:
 
 class JSON:
 	"""JSON parser"""
-	jsondata = None
+	
 	def __init__(self, data):
 		self.data = data
+		self.jsondata = ""
 	def normalizer(self):
-		jsondata = None
 		try:
-			jsondata = json.loads(self.data)
+			self.jsondata = json.loads(self.data)
 		except Exception as err:
 			pass
-		return jsondata
+		return self.jsondata
 
+"""
 class DataFetcher:
 	def __init__(self, port):
 		self.BaudRate = 9600
 		self.port = port
 
 	def GetData(self):
-		data = None
-		ard = None
-		try:
-			ard = serial.Serial(self.port, self.BaudRate)
-		except Exception as err:
-			print err
-		try:
-			data = ard.readline()
-		except Exception:
-			pass
-		return data
+		ard = serial.Serial(self.port, self.BaudRate)
+        data = ard.readline()
+        return data
+"""
+
