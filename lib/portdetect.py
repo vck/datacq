@@ -1,10 +1,10 @@
 import serial
 import glob
 
-class ArduinoSerialPort:
+class port:
 	def __init__(self):
 		pass
-	def get_serial(self):
+	def portlist(self):
 		ports = glob.glob('/dev/tty[A-Za-z]*')
 		res = []
 		for port in ports:
@@ -17,7 +17,7 @@ class ArduinoSerialPort:
 		return res[0]
 
 def main():
-	port = ArduinoSerialPort().get_serial()
+	port = port().portlist()
 	print port
 
 if __name__ == '__main__':

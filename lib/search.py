@@ -39,10 +39,9 @@ def get_zip():
     files = locate_file('.zip')
     return files
 
-
 def main():
     data = locate_with_folder('./static', '.csv')
-    print data 
+    print data
 
 if __name__ == '__main__':
     main()
