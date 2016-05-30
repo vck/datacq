@@ -3,9 +3,7 @@
 pekerja utama pemasok data sensor dijalankan dengan schedule
 penulis: vickydasta
 """
-import random
 import schedule
-import os
 import lib.timestamps as timestamps
 import serial
 import time
@@ -17,7 +15,7 @@ import lib.data as parser
 def TestJob():
 	starttime = time.time()
 	file_name = timestamps.date_time()+'.csv'
-	target_file = open('static/'+file_name,'a')
+	target_file = open('/home/pi/datacq/static/'+file_name,'a')
 	csvobj = csv.writer(target_file, delimiter=";")
    	for i in range(101):
    		print 'attempt: ',i
