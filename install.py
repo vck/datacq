@@ -3,15 +3,20 @@
 
 import os, sys, subprocess
 
-if sys.id != 0:
-    print "must run as root"
-    sys.exit(0)
-
 python_modules = ["ino","flask"]
+debian_modules = ["python-serial","arduino-core"]
 
+print 'installing mods'
 for mods in python_modules:
-    print 'installing mods"
-    print subprocess.check_output(["pip", "install",mods], output=True)
+	print "installing %s"%mods
+   	subprocess.check_output(["sudo","pip", "install",mods], output=True)
+
+print 'installing debian packages...'
+for mods in debian_modules:	
+	print "installing %s"%mods
+	subprocess.check_output(["sudo","apt-get","install", mods])
+
+
 
 
 
