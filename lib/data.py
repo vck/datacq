@@ -5,43 +5,22 @@ author: vickydasta
 """
 
 import sys
-import schedule
-import os
-import lib.timestamps as timestamps
-import serial
 import time
-import glob
 import json
-import csv
 import sys
-from time import strftime
-try:
-	import lib.portdetect as portdetect
-except ImportError:
-	sys.exit('cannot import portdetect')
 
-class JSON:
-	"""JSON parser"""
+class JSONParser:
+	"""
+	data parser for arduino json-ized data
+	(i've doubt if jsonized is even a word.)
+	"""
 	
 	def __init__(self, data):
-		self.data = data
-		self.jsondata = ""
+		self.data = data	
 	def normalizer(self):
 		try:
-			self.jsondata = json.loads(self.data)
+			if self.data:
+				json_data = json.loads(self.data.strip('\r\n'))
+				return json_data 
 		except Exception as err:
-			pass
-		return self.jsondata
-
-"""
-class DataFetcher:
-	def __init__(self, port):
-		self.BaudRate = 9600
-		self.port = port
-
-	def GetData(self):
-		ard = serial.Serial(self.port, self.BaudRate)
-        data = ard.readline()
-        return data
-"""
-
+			print err 

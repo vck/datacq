@@ -18,7 +18,10 @@ def TestJob():
 			json_obj = parser.JSON(data)
 			normal_data = json_obj.normalizer()
 		if normal_data is None:pass
-		print normal_data
+		print normal_data['data1']
+		print normal_data['data2']
+		print normal_data['sensor']
+		#print parser.json_loads_byteified(normal_data)
 
 if __name__ == '__main__':
 	while True:

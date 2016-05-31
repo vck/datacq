@@ -25,8 +25,8 @@ def TestJob():
 		if normal_data is None:
 			pass
 		try:
-			print 'attempt {} writing to {} - {} to {}'.format(i, normal_data[u'data1'][0], normal_data[u'data2'][0], file_name)
-			csvobj.writerow((strftime("%Y-%m-%d %H-%M-%S"), normal_data[u'data1'][0], normal_data[u'data2'][0]))
+			print 'attempt {} writing to {} - {} to {}'.format(i, normal_data['data1'][0], normal_data['data2'][0], file_name)
+			csvobj.writerow((strftime("%H-%M-%S %Y-%m-%d "), normal_data['data1'][0], normal_data['data2'][0]))
 		except Exception as err:
 			print err
 		time.sleep(5)
