@@ -20,7 +20,15 @@ class JSONParser:
 	def normalizer(self):
 		try:
 			if self.data:
-				json_data = json.loads(self.data.strip('\r\n'))
+				json_data = json.loads(self.data.strip('\r'))
 				return json_data 
 		except Exception as err:
 			print err 
+
+class FetchData():
+    def __init__(self):
+        self.baudrate = 9600
+    def Fetch(self):
+        data_arduino = serial.Serial(port().portlist(), self.baudrate).readline()
+        loader = lib.data.JSON(data_arduino)
+        return loader.normalizer()

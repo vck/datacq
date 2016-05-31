@@ -15,7 +15,7 @@ def TestJob():
    		print 'attempt: ',i
 		data = serial.Serial(pd.port().portlist(), 9600).readline()
 		if data:
-			json_obj = parser.JSON(data)
+			json_obj = parser.JSONParser(data)
 			normal_data = json_obj.normalizer()
 		if normal_data is None:pass
 		print normal_data['data1']
