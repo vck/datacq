@@ -24,11 +24,3 @@ class JSONParser:
 				return json_data 
 		except Exception as err:
 			print err 
-
-class FetchData():
-    def __init__(self):
-        self.baudrate = 9600
-    def Fetch(self):
-        data_arduino = serial.Serial(port().portlist(), self.baudrate).readline()
-        loader = lib.data.JSON(data_arduino)
-        return loader.normalizer()
